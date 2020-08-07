@@ -64,6 +64,16 @@ class SleepNightTest {
         assertEquals(0, sleepNightRelaxedMockK.nightId)
         assertEquals(0, sleepNightRelaxedMockK.endTimeMilli)
         assertEquals(0, sleepNightRelaxedMockK.startTimeMilli)
+
+        //using mockkClass
+        val sleepNightClassMocked = mockkClass(SleepNight::class)
+        val expected = 3L
+
+        every { sleepNightClassMocked.nightId } returns expected
+
+        assertEquals(expected, sleepNightClassMocked.nightId)
+
+        verify { sleepNightClassMocked.nightId }
     }
 
 }
