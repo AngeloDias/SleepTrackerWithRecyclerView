@@ -74,6 +74,15 @@ class SleepNightTest {
         assertEquals(expected, sleepNightClassMocked.nightId)
 
         verify { sleepNightClassMocked.nightId }
+
+        // mocking constructor
+        mockkConstructor(SleepNight::class)
+
+        val expectedNightId = 1L
+
+        every { anyConstructed<SleepNight>().nightId } returns expectedNightId
+        assertEquals(expectedNightId, SleepNight().nightId)
+        verify { anyConstructed<SleepNight>().nightId }
     }
 
 }
